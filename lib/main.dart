@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:store/routes/root.dart';
+import '';
 
 void main() => runApp(MyApp());
 
@@ -11,36 +12,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: FirebaseTest(),
+      theme: ThemeData(
+        textTheme: GoogleFonts.poppinsTextTheme(
+          Theme.of(context).textTheme
+        ),
+
+      ),
+      home: Root(),
     );
   }
 }
 
-class FirebaseTest extends StatelessWidget {
-
-  final Future<FirebaseApp> firebasetest = Firebase.initializeApp();
-
-  @override
-  Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: firebasetest,
-      builder: (context, snapshot){
-        if(snapshot.hasError){
-          return Scaffold(
-            body: Center(
-              child: Text('Firebase is not connect'),
-            ),
-          );
-        }
-        if(snapshot.connectionState == ConnectionState.done){
-          return Scaffold(
-            body: Center(
-              child: Text('Firebase is connect'),
-            ),
-          );
-        }
-        return CircularProgressIndicator();
-      },
-    );
-  }
-}
