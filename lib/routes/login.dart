@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:store/const.dart';
+import 'package:store/routes/signup.dart';
 import 'package:store/widgets/custombutton.dart';
 import 'package:store/widgets/custominput.dart';
 
@@ -38,13 +41,17 @@ class _HomeState extends State<LoginPage> {
                   CustomButton(
                       text:'Login',
                       onTap: () =>print('button Clicked'),
-                      mode: false)
+                      mode: false,
+                      loading: false,
+                  )
                 ],
               ),
               CustomButton(
                   text: 'Create New Account',
-                  onTap: () => print('Button Clicked'),
-                  mode: true)
+                  onTap: () => Get.to(()=> SignUp()),
+                  mode: true,
+                loading: false,
+              )
             ],
           ),
         ),
