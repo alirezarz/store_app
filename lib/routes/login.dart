@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:store/const.dart';
+import 'package:store/widgets/custombutton.dart';
+import 'package:store/widgets/custominput.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -11,9 +14,41 @@ class _HomeState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Text('This is the LoginPage'),
-      ),
+      body: SafeArea(
+        child: Container(
+          width: double.infinity,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(
+                padding: EdgeInsets.only(top: 30.0),
+                child: const Text('Welcome to the store!',
+                style: Consts.headingTextStype,
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              Column(
+                children: [
+                  CustomInput(
+                    textHint: 'Enter Email ...',
+                  ),
+                  CustomInput(
+                    textHint: 'Enter Password ...',
+                  ),
+                  CustomButton(
+                      text:'Login',
+                      onTap: () =>print('button Clicked'),
+                      mode: false)
+                ],
+              ),
+              CustomButton(
+                  text: 'Create New Account',
+                  onTap: () => print('Button Clicked'),
+                  mode: true)
+            ],
+          ),
+        ),
+      )
     );
   }
 }
